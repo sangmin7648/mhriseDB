@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="py-3">
+  <h4>소재</h4>
+  <hr>
+</div>
+<div class="album py-3 bg-light">
+  <div class="row">
+    {% for material in material_list %}
+      {% with material = material %}
+      {% include "/material/material_card_sm.html" %}
+      {% endwith %}
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

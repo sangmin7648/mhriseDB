@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="py-3">
+  <h4>필드</h4>
+  <hr>
+</div>
+<div class="album py-3 bg-light">
+  <div class="row">
+    {% for field in field_list %}
+      {% with field = field %}
+      {% include "/field/field_card_sm.html" %}
+      {% endwith %}
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

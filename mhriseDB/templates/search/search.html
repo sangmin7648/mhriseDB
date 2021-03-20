@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="py-3 px-5">
+    {% if field_list %}
+        <div class="py-3">
+            <h4>필드</h4>
+            <hr>
+            {% for field in field_list %}
+                <a href="{{ url_for('field.field_detail', field_name=field.name) }}">
+                    {{ field.name }}</a><br>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if material_list %}
+        <div class="py-3">
+            <h4>소재</h4>
+            <hr>
+            {% for material in material_list %}
+            <a href="{{ url_for('material.material_detail', material_name=material.name) }}">
+                {{ material.name }}</a><br>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if monster_list %}
+    <div class="py-3">
+        <h4>몬스터</h4>
+        <hr>
+        {% for monster in monster_list %}
+        <a href="{{ url_for('monster.monster', monster_name=monster.name) }}">
+            {{ monster.name }} - {{ monster.alias }}</a><br>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if quest_list %}
+    <div class="py-3">
+        <h4>퀘스트</h4>
+        <hr>
+        {% for quest in quest_list %}
+        <a href="{{ url_for('quest.quest_detail', quest_id=quest.id) }}">
+            {{ quest.name }}</a><br>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+
+
+{% endblock %}

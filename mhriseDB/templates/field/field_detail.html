@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="py-3">
+    <h4> {{ field.name }} </h4>
+    <hr>
+</div>
+<div class="row">
+    <div class="col-md-auto d-flex justify-content-center">
+        <div class="card mb-3" style="width: 18rem; max-height: 25rem;">
+            <strong class="card-header text-center">{{ field.name }}</strong>
+            <img class="card-img-top" src="{{ url_for('static', filename='/field/'+field.eng_name+'.jpeg') }}">
+            <div class="card-body">
+                <p class="card-text">{{ field.description }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <h5> 지도 </h5>
+                <div class="text-center">
+                    <img src="{{ url_for('static', filename='/field/map/'+ field.eng_name +'.png') }}" height="400">
+                </div>
+            </div>
+
+            <div class="col">
+                <h5>발견 소재</h5>
+                <table class="table text-nowrap">
+                    <thead class="thead-light">
+                        <th scope="col">하위 소재</th>
+                        <th scope="col">위치</th>
+                    </thead>
+                    <tbody>
+                        {% for material_field in field.material_field_list %}
+                        {% if material_field.rank == "하위" %}
+                        <tr>
+                            <td><a href="{{ url_for('material.material_detail', material_name=material_field.material_name) }}">
+                                {{ material_field.material_name }} </a></td>
+                            <td> {{ material_field.area }}번 </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <table class="table text-nowrap">
+                    <thead class="thead-light">
+                        <th scope="col">상위 소재</th>
+                        <th scope="col">위치</th>
+                    </thead>
+                    <tbody>
+                        {% for material_field in field.material_field_list %}
+                        {% if material_field.rank == "상위" %}
+                        <tr>
+                            <td><a href="{{ url_for('material.material_detail', material_name=material_field.material_name) }}">
+                                {{ material_field.material_name }} </a></td>
+                            <td> {{ material_field.area }}번 </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

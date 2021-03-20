@@ -1,0 +1,184 @@
+{% extends 'base.html' %}jap_name
+{% block content %}
+<div class="py-3">
+    <h4>{{ monster.name }}</h4>
+    <hr>
+</div>
+
+<div class="row">
+    <div class="col-md-auto d-flex justify-content-center">
+        <div class="card mb-3" style="width: 18rem;">
+            <strong class="card-header text-center">{{ monster.name }}</strong>
+            <img class="card-img-top" src="{{ url_for('static', filename='/monster/icon/'+monster.jap_name+'.png') }}"
+                alt="이미지 로딩 실패">
+            <div class="card-body">
+                <p class="card-text">{{ monster.description }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">종별 : {{ monster.monster_class }}</li>
+                {% if monster.is_large == 1 %}
+                <li class="list-group-item">별명 : {{ monster.alias }}</li>
+                <li class="list-group-item">약점 속성 : <br>
+                {% for weak_element in weak_element_list %}
+                    {% if weak_element.element == "화" %}
+                        {% set color = "red" %}
+                    {% elif weak_element.element == "수" %}
+                        {% set color = "blue" %}
+                    {% elif weak_element.element == "뇌" %}
+                        {% set color = "rgb(148, 138, 0)" %}
+                    {% elif weak_element.element == "빙" %}
+                        {% set color = "(0, 190, 190)" %}
+                    {% else %}
+                        {% set color = "rgb(77, 0, 128)" %}
+                    {% endif %}
+                    <span style="color:{{ color }}">
+                    {{ weak_element.element }}
+                    {{ "★" * weak_element.effectiveness }}
+                    </span>
+                {% endfor %}
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="col">
+        {% if monster.is_large == 1 %}
+        <h5>육질표</h5>
+        <div class="table-responsive">
+            <table class="table table-bordered text-nowrap">
+                <thead class="thead-light text-center">
+                    <tr>
+                        <th scope="col">부위</th>
+                        <th scope="col">절단</th>
+                        <th scope="col">타격</th>
+                        <th scope="col">원격</th>
+                        <th scope="col"><span style="color:rgb(194, 0, 0)">화</span></th>
+                        <th scope="col"><span style="color:blue">수</span></th>
+                        <th scope="col"><span style="color:rgb(148, 138, 0)">뇌</span></th>
+                        <th scope="col"><span style="color:rgb(0, 190, 190)">빙</span></th>
+                        <th scope="col"><span style="color:rgb(77, 0, 128)">용</span></th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    {% if not hit_data_list %}
+                        <tr>
+                            <td>준비중입니다</td>
+                        </tr>
+                    {% else %}
+                    {% for hit_data in hit_data_list %}
+                        <tr>
+                            <td>{{ hit_data.part }}</td>
+                            <td>{{ hit_data.slash }}</td>
+                            <td>{{ hit_data.impact }}</td>
+                            <td>{{ hit_data.shot }}</td>
+                            <td>{{ hit_data.fire }}</td>
+                            <td>{{ hit_data.water }}</td>
+                            <td>{{ hit_data.thunder }}</td>
+                            <td>{{ hit_data.ice }}</td>
+                            <td>{{ hit_data.dragon }}</td>
+                        </tr>
+                    {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <h5>등장 퀘스트</h5>
+        <div class="table-responsive text-nowrap">
+        <table class="table table-bordered">
+            <thead class="thead-light ">
+                <tr>
+                    <th scope="col">수주</th>
+                    <th scope="col">퀘스트</th>
+                    <th scope="col">필드</th>
+                    <th scope="col">제한시간</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if not quest_monster_list %}
+                <tr>
+                    <td>준비중입니다</td>
+                </tr>
+                {% else %}
+                {% for quest_monster in quest_monster_list %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('quest.quest', quest_source=quest_monster.quest.드source) }}"> {{ quest_monster.quest.source }} </a>
+                        {{ quest_monster.quest.source_star }}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('quest.quest_detail', quest_id=quest_monster.quest.id) }}">
+                            {{ quest_monster.quest.name }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('field.field_detail', field_name=quest_monster.quest.field.name) }}">
+                            {{ quest_monster.quest.field.name }}
+                        </a>
+                    </td>
+                    <td>{{ quest_monster.quest.time_limit }}분</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+        </div>
+
+    </div>
+</div>
+
+<div class="row text-nowrap">
+    <div class="col">
+        <h5>하위 소재</h5>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">소재</th>
+                    <th scope="col">부위</th>
+                    <th scope="col">확률</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for material_monster in monster.material_monster_list %}
+                {% if material_monster.rank == "하위" %}
+                <tr>
+                    <td><a href="{{ url_for('material.material_detail', material_name=material_monster.material_name) }}">
+                        {{ material_monster.material_name }}</a></td>
+                    <td>{{ material_monster.monster_part }}</td>
+                    <td>{{ material_monster.drop_rate }} %</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col">
+        <h5>상위 소재</h5>
+        <table class="table table-bordered">
+            <thead class="thead-light ">
+                <tr>
+                    <th scope="col">소재</th>
+                    <th scope="col">부위</th>
+                    <th scope="col">확률</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for material_monster in monster.material_monster_list %}
+                {% if material_monster.rank == "상위" %}
+                <tr>
+                    <td><a href="{{ url_for('material.material_detail', material_name=material_monster.material_name) }}">
+                        {{ material_monster.material_name }}</a></td>
+                    <td>{{ material_monster.monster_part }}</td>
+                    <td>{{ material_monster.drop_rate }} %</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+{% endblock %}

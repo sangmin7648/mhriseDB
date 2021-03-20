@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% if title %}
+  <title>{{ title }} | 몬헌라이즈DB</title>
+  {% else %}
+  <title>몬헌라이즈DB</title>
+  {% endif %}
+  <!-- 부트스트랩 min css -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+  <!-- 커스텀 css -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
+</head>
+
+<body style="background-color:rgb(230, 230, 230)">
+  <header class="navbar navbar-expand-xl navbar-dark bg-dark fixed-top">
+    <div class="container d-flex justify-content-between">
+      <a class="navbar-brand" href="{{ url_for('home.home') }}">몬헌라이즈DB(Beta)</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('monster.monster') }}">몬스터</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false"> 퀘스트
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url_for('quest.quest', quest_source='촌장') }}">촌장 퀘스트</a>
+              <a class="dropdown-item" href="{{ url_for('quest.quest', quest_source='하위') }}">하위 퀘스트</a>
+              <a class="dropdown-item" href="{{ url_for('quest.quest', quest_source='상위') }}">상위 퀘스트</a>
+            </div>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('field.field') }}">필드</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('material.material') }}">소재</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">무기(준비중)</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">방어구(준비중)</a>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" method="get" action="{{ url_for('search.search') }}">
+          <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="몬스터, 소재, 퀘스트, ...">
+          <button class="btn btn-primary my-2 my-sm-0" type="submit">검색</button>
+        </form>
+      </div>
+  </header>
+
+  <div class="container alert alert-danger text-center">현재 게임에 대한 정보가 부족합니다. 정보가 올라오는 데로 빠른 업데이트 진행하겠습니다. </div>
+  <main class="container bg-light">
+    <article>
+    {% block content %}
+    {% endblock %}
+    </article>
+  </main>
+
+  <footer class="text-muted page-footer font-small">
+    <div class="container text-center">
+      <hr>
+      <p>
+        몬스터헌터&reg;는 대한민국에 등록된 가부시키가이샤 카프콤(주식회사 캡콤)의 상표입니다
+        이 사이트는 개인이 운영하는 웹 사이트로 캡콤(주)와 어떤 연관도 없습니다
+      </p>
+      <p> 이상민 &copy; 2021 </p>
+      <p> 버그, 기능 추가 및 기타 건의사항 :
+        <a href="mailto:sangminlee7648@gmail.com"><span style="color:grey;">mhriseDB@gmail.com</span></a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- jquery min js -->
+  <script src="{{ url_for('static', filename='jquery-3.5.1.min.js') }}"></script>
+  <!-- 부트스트랩 min js-->
+  <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+</body>
+
+</html>

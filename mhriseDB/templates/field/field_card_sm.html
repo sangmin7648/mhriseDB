@@ -1,0 +1,9 @@
+<div class="col-6 col-sm-4 col-md-3 col-lg-3 col-xl-3">
+    <div class="card mb-4">
+        <img class="card-img-top" src="{{ url_for('static', filename='/field/'+field.eng_name+'.jpeg') }}">
+        <div class="card-body">
+            <p class="card-text text-center">{{ field.name }}</p>
+        </div>
+        <a class="stretched-link" href="{{ url_for('field.field_detail', field_name=field.name) }}"></a>
+    </div>
+</div>

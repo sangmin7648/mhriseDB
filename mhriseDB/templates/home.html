@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+      <div class="py-3">
+        <h4>몬스터헌터 라이즈 뉴스</h4>
+        <hr>
+      </div>
+      <div class="table-responsive">
+          <table class="table text-nowrap">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">제목</th>
+                <th scope="col">날짜</th>
+                <th scope="col">출처</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for news in news_list %}
+              <tr>
+                <td><a href="{{ news.url }}">{{ news.title }}</a></td>
+                <td>{{ news.date }}</td>
+                <td>{{ news.source}}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+    <div class="py-3">
+      <h4>대형몬스터</h4>
+      <hr>
+    </div>
+
+    <div class="album py-3 bg-light">
+      <div class="row">
+        {% for monster in large_monster_name_list %}
+          {% with monster = monster %}
+          {% include "/monster/monster_card_sm.html" %}
+          {% endwith %}
+        {% endfor %}
+      </div>
+    </div>
+{% endblock %}

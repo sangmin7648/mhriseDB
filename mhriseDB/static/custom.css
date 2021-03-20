@@ -1,0 +1,32 @@
+/* 고정 네비게이션바를 위한 탑 패딩 */
+body {
+    padding-top: 4.5rem
+  }
+
+/* 예리도 그래프 class*/
+  .sharpness-bar{
+  border:1px solid #bbb;
+  min-width:92px;
+  height:10px;
+  background-color:#bbb;
+  float:left;
+  clear:both
+  }
+  .sharpness-bar span{display:inline-block;height:100%;float:left}
+  .sharpness-bar .red{background-color:#C00C38}
+  .sharpness-bar .orange{background-color:#E85018}
+  .sharpness-bar .yellow{background-color:#F0C830}
+  .sharpness-bar .green{background-color:#58D000}
+  .sharpness-bar .blue{background-color:#3068E8}
+  .sharpness-bar .white{background-color:#F0F0F0}
+  .sharpness-bar .purple{background-color:#c3c}
+
+/* 테이블 워핑 방지 */
+.table-responsive {
+  white-space: nowrap;
+}
+
+.link-unstyled, .link-unstyled:link, .link-unstyled:hover {
+  color: inherit;
+  text-decoration: inherit;
+}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="py-3">
+    <h4> {{ quest.source }} {{ quest.source_star }} {{ quest.name }} </h4>
+    <hr>
+</div>
+<div class="row">
+    <div class="col-md-auto d-flex justify-content-center">
+        <div class="card  mb-3" style="width: 18rem;">
+            <strong class="card-header text-center">{{ quest.name }}</strong>
+            <div class="card-body">
+                <p class="card-text">{{ quest.description }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">목표 : {{ quest.goal }} </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <h5>등장 몬스터</h5>
+                <table class="table text-nowrap table-bordered">
+                    <thead class="thead-light">
+                        <th scope="col">이름</th>
+                        <th scope="col">마리</th>
+                    </thead>
+                    <tbody>
+                        {% for quest_monster in quest_monster_list %}
+                        <tr>
+                            <td>
+                                <a href="{{ url_for('monster.monster_detail', monster_name=quest_monster.monster.name) }}">
+                                    {{ quest_monster.monster.name }}
+                                </a>
+                            </td>
+                            <td>x {{ quest_monster.monster_count }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col">
+                <h5>보상</h5>
+                <table class="table text-nowrap table-bordered">
+                    <thead class="thead-light">
+                        <th scope="col">소재</th>
+                        <th scope="col">개수</th>
+                        <th scope="col">확률</th>
+                    </thead>
+                    <tbody>
+                        {% for material_quest in quest.material_quest_list %}
+                        <tr>
+                            <td><a href="{{ url_for('material.material_detail', material_name=material_quest.material_name) }}">
+                                {{ material_quest.material_name }}</a></td>
+                            <td>x{{ material_quest.material_count }} </td>
+                            <td>{{ material_quest.drop_rate}} % </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
