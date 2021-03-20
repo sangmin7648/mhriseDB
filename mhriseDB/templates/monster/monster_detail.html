@@ -105,7 +105,7 @@
                 {% for quest_monster in quest_monster_list %}
                 <tr>
                     <td>
-                        <a href="{{ url_for('quest.quest', quest_source=quest_monster.quest.드source) }}"> {{ quest_monster.quest.source }} </a>
+                        <a href="{{ url_for('quest.quest', quest_source=quest_monster.quest.source) }}"> {{ quest_monster.quest.source }} </a>
                         {{ quest_monster.quest.source_star }}
                     </td>
                     <td>
