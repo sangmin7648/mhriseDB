@@ -1,3 +1,14 @@
-import os
+DB = {
+    'user': 'root',
+    'password': '691103',
+    'host': 'localhost',
+    'port': 3306,
+    'database': 'mhriseDB'
+}
 
-BASE_DIR = os.path.svdirname(os.path.dirname(__file__))
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+SQLALCHEMY_DATABASE_URI = f"mysql+mysqlconnector://{DB['user']}:{DB['password']}@" \
+               f"{DB['host']}:{DB['port']}/{DB['database']}?charset=utf8"
+
+MYSQL_CHARSET = 'utf8'

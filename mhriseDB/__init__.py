@@ -6,7 +6,7 @@ from .models import db, migrate, Monsters, MHRNews, Fields, Quests, Materials
 
 def create_app(test_config=None):
     app = Flask(__name__)
-    app.config.from_object(config)
+    app.config.from_envvar('APP_CONFIG_FILE')
     if test_config is not None:
         app.config.update(test_config)
 
