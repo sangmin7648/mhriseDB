@@ -129,54 +129,58 @@
 </div>
 
 <div class="row">
-    <div class="col table-responsive">
+    <div class="col">
         <h5>하위 소재</h5>
-        <table class="table table-bordered text-nowrap">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">소재</th>
-                    <th scope="col">부위</th>
-                    <th scope="col">확률</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for material_monster in monster.material_monster_list %}
-                {% if material_monster.rank == "하위" %}
-                <tr>
-                    <td><a href="{{ url_for('material.material_detail', material_name=material_monster.material_name) }}">
-                        {{ material_monster.material_name }}</a></td>
-                    <td>{{ material_monster.source }}</td>
-                    <td>{{ material_monster.drop_rate }} %</td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered text-nowrap">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">소재</th>
+                        <th scope="col">부위</th>
+                        <th scope="col">확률</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for material_monster in monster.material_monster_list %}
+                    {% if material_monster.rank == "하위" %}
+                    <tr>
+                        <td><a href="{{ url_for('material.material_detail', material_name=material_monster.material_name) }}">
+                            {{ material_monster.material_name }}</a></td>
+                        <td>{{ material_monster.source }}</td>
+                        <td>{{ material_monster.drop_rate }} %</td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <div class="col table-responsive">
+    <div class="col">
         <h5>상위 소재</h5>
-        <table class="table table-bordered text-nowrap">
-            <thead class="thead-light ">
-                <tr>
-                    <th scope="col">소재</th>
-                    <th scope="col">부위</th>
-                    <th scope="col">확률</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for material_monster in monster.material_monster_list %}
-                {% if material_monster.rank == "상위" %}
-                <tr>
-                    <td><a href="{{ url_for('material.material_detail', material_name=material_monster.material_name) }}">
-                        {{ material_monster.material_name }}</a></td>
-                    <td>{{ material_monster.source }}</td>
-                    <td>{{ material_monster.drop_rate }} %</td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-light ">
+                    <tr>
+                        <th scope="col">소재</th>
+                        <th scope="col">부위</th>
+                        <th scope="col">확률</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for material_monster in monster.material_monster_list %}
+                    {% if material_monster.rank == "상위" %}
+                    <tr>
+                        <td><a href="{{ url_for('material.material_detail', material_name=material_monster.material_name) }}">
+                            {{ material_monster.material_name }}</a></td>
+                        <td>{{ material_monster.source }}</td>
+                        <td>{{ material_monster.drop_rate }} %</td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
     </div>
 </div>
