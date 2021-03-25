@@ -43,7 +43,7 @@
                                     {{ material_monster.rank }}
                                 </td>
                                 <td>
-                                    {{ material_monster.monster_part }}
+                                    {{ material_monster.source }}
                                 </td>
                                 <td>
                                     {{ material_monster.drop_rate }} %
@@ -66,20 +66,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% if material.material_field_list %}
                             {% for material_field in material.material_field_list %}
-                            <tr>
-                                <td>
-                                    <a href="{{ url_for('field.field_detail', field_name=material_field.field_name) }}">
-                                       {{ material_field.field_name }}</a>
-                                </td>
-                                <td>
-                                    {{ material_field.rank }}
-                                </td>
-                                <td>
-                                    {{ material_field.area }} 번
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <a href="{{ url_for('field.field_detail', field_name=material_field.field_name) }}">
+                                           {{ material_field.field_name }}</a>
+                                    </td>
+                                    <td>
+                                        {{ material_field.rank }}
+                                    </td>
+                                    <td>
+                                        {{ material_field.area }} 번
+                                    </td>
+                                </tr>
                             {% endfor %}
+                            {% else %}
+                                <td>준비중</td>
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>
@@ -96,20 +100,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {% if material.material_quest_list %}
                             {% for material_quest in material.material_quest_list %}
-                            <tr>
-                                <td>
-                                    <a href="{{ url_for('quest.quest_detail', quest_id=material_quest.quest_id) }}">
-                                       {{ material_quest.quest.name }}</a>
-                                </td>
-                                <td>
-                                    {{ material_quest.material_count }}
-                                </td>
-                                <td>
-                                    {{ material_quest.drop_rate }} %
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        <a href="{{ url_for('quest.quest_detail', quest_id=material_quest.quest_id) }}">
+                                           {{ material_quest.quest.name }}</a>
+                                    </td>
+                                    <td>
+                                        {{ material_quest.material_count }}
+                                    </td>
+                                    <td>
+                                        {{ material_quest.drop_rate }} %
+                                    </td>
+                                </tr>
                             {% endfor %}
+                            {% else %}
+                                <td>준비중</td>
+                            {% endif %}
                         </tbody>
                     </table>
                 </div>

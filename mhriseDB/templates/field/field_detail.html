@@ -32,15 +32,19 @@
                         <th scope="col">위치</th>
                     </thead>
                     <tbody>
+                        {% if field.material_field_list %}
                         {% for material_field in field.material_field_list %}
-                        {% if material_field.rank == "하위" %}
-                        <tr>
-                            <td><a href="{{ url_for('material.material_detail', material_name=material_field.material_name) }}">
-                                {{ material_field.material_name }} </a></td>
-                            <td> {{ material_field.area }}번 </td>
-                        </tr>
-                        {% endif %}
+                            {% if material_field.rank == "하위" %}
+                            <tr>
+                                <td><a href="{{ url_for('material.material_detail', material_name=material_field.material_name) }}">
+                                    {{ material_field.material_name }} </a></td>
+                                <td> {{ material_field.area }}번 </td>
+                            </tr>
+                            {% endif %}
                         {% endfor %}
+                        {% else %}
+                            <td>준비중</td>
+                        {% endif %}
                     </tbody>
                 </table>
                 <table class="table text-nowrap">
@@ -49,15 +53,19 @@
                         <th scope="col">위치</th>
                     </thead>
                     <tbody>
+                        {% if field.material_field_list %}
                         {% for material_field in field.material_field_list %}
-                        {% if material_field.rank == "상위" %}
-                        <tr>
-                            <td><a href="{{ url_for('material.material_detail', material_name=material_field.material_name) }}">
-                                {{ material_field.material_name }} </a></td>
-                            <td> {{ material_field.area }}번 </td>
-                        </tr>
-                        {% endif %}
+                            {% if material_field.rank == "상위" %}
+                            <tr>
+                                <td><a href="{{ url_for('material.material_detail', material_name=material_field.material_name) }}">
+                                    {{ material_field.material_name }} </a></td>
+                                <td> {{ material_field.area }}번 </td>
+                            </tr>
+                            {% endif %}
                         {% endfor %}
+                        {% else %}
+                            <td>준비중</td>
+                        {% endif %}
                         </tr>
                     </tbody>
                 </table>

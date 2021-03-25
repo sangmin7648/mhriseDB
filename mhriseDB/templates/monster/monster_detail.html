@@ -145,7 +145,7 @@
                 <tr>
                     <td><a href="{{ url_for('material.material_detail', material_name=material_monster.material_name) }}">
                         {{ material_monster.material_name }}</a></td>
-                    <td>{{ material_monster.monster_part }}</td>
+                    <td>{{ material_monster.source }}</td>
                     <td>{{ material_monster.drop_rate }} %</td>
                 </tr>
                 {% endif %}
@@ -170,7 +170,7 @@
                 <tr>
                     <td><a href="{{ url_for('material.material_detail', material_name=material_monster.material_name) }}">
                         {{ material_monster.material_name }}</a></td>
-                    <td>{{ material_monster.monster_part }}</td>
+                    <td>{{ material_monster.source }}</td>
                     <td>{{ material_monster.drop_rate }} %</td>
                 </tr>
                 {% endif %}

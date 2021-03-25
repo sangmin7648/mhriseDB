@@ -55,6 +55,7 @@ class Quests(db.Model):
     source = db.Column(db.String(50))
     source_star = db.Column(db.Integer)
     goal = db.Column(db.String(200))
+    life_count = db.Column(db.Integer)
     time_limit = db.Column(db.Integer)
     description = db.Column(db.Text)
 
@@ -109,7 +110,7 @@ class MaterialsFromMonster(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     monster_name = db.Column(db.String(50), db.ForeignKey('monsters.name', ondelete='CASCADE'))
     rank = db.Column(db.String(50))
-    monster_part = db.Column(db.String(50))
+    source = db.Column(db.String(50))
     material_name = db.Column(db.String(100), db.ForeignKey('materials.name', ondelete='CASCADE'))
     drop_rate = db.Column(db.Integer)
 
