@@ -9,9 +9,11 @@
         <div class="card mb-3" style="width: 18rem; max-height: 25rem;">
             <strong class="card-header text-center">{{ field.name }}</strong>
             <img class="card-img-top" src="{{ url_for('static', filename='/field/'+field.eng_name+'.jpeg') }}">
+            {% if field.description %}
             <div class="card-body">
                 <p class="card-text">{{ field.description }}</p>
             </div>
+            {% endif %}
         </div>
     </div>
 
