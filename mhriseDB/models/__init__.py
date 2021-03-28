@@ -114,5 +114,5 @@ class MaterialsFromMonster(db.Model):
     material_name = db.Column(db.String(100), db.ForeignKey('materials.name', ondelete='CASCADE'))
     drop_rate = db.Column(db.Integer)
 
-    monster = db.relationship('Monsters', backref=db.backref('material_monster_list'))
-    material = db.relationship('Materials', backref=db.backref('material_monster_list'))
+    monster = db.relationship('Monsters', backref=db.backref('material_monster_list', order_by="desc(MaterialsFromMonster.material_name)"))
+    material = db.relationship('Materials', backref=db.backref('material_monster_list', order_by="desc(MaterialsFromMonster.material_name)"))
