@@ -8,19 +8,28 @@
     <div class="col-md-auto d-flex justify-content-center">
         <div class="card  mb-3" style="width: 18rem;">
             <strong class="card-header text-center">{{ quest.name }}</strong>
+            <img class="card-img-top" src="{{ url_for('static', filename='/field/'+quest.field.eng_name+'.jpeg') }}">
             {% if quest.description %}
             <div class="card-body">
                 <p class="card-text">{{ quest.description }}</p>
             </div>
             {% endif %}
             <ul class="list-group list-group-flush">
+
+                <li class="list-group-item">필드 :
+                    <a href="{{ url_for('field.field_detail', field_name=quest.field.name) }}">
+                        {{ quest.field.name }} </a>
+                </li>
                 <li class="list-group-item">목표 : {{ quest.goal }} </li>
+                <li class="list-group-item">최대 수레 : {{ quest.life_count }} 수레 </li>
+                <li class="list-group-item">시간제한 : {{ quest.time_limit }} 분</li>
             </ul>
         </div>
     </div>
 
     <div class="col">
         <div class="row">
+            {% if quest_monster_list %}
             <div class="col">
                 <h5>등장 몬스터</h5>
                 <table class="table text-nowrap table-bordered">
@@ -42,6 +51,7 @@
                     </tbody>
                 </table>
             </div>
+            {% endif %}
 
             <div class="col">
                 <h5>보상</h5>
@@ -52,6 +62,7 @@
                         <th scope="col">확률</th>
                     </thead>
                     <tbody>
+                    {% if quest.material_quest_list %}
                         {% for material_quest in quest.material_quest_list %}
                         <tr>
                             <td><a href="{{ url_for('material.material_detail', material_name=material_quest.material_name) }}">
@@ -60,6 +71,11 @@
                             <td>{{ material_quest.drop_rate}} % </td>
                         </tr>
                         {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td>준비중</td>
+                        </tr>
+                    {% endif %}
                     </tbody>
                 </table>
             </div>

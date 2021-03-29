@@ -85,45 +85,7 @@
         </div>
         {% endif %}
 
-        <h5>등장 퀘스트</h5>
-        <div class="table-responsive">
-        <table class="table table-bordered text-nowrap">
-            <thead class="thead-light ">
-                <tr>
-                    <th scope="col">수주</th>
-                    <th scope="col">퀘스트</th>
-                    <th scope="col">필드</th>
-                    <th scope="col">제한시간</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if not quest_monster_list %}
-                <tr>
-                    <td>준비중입니다</td>
-                </tr>
-                {% else %}
-                {% for quest_monster in quest_monster_list %}
-                <tr>
-                    <td>
-                        <a href="{{ url_for('quest.quest', quest_source=quest_monster.quest.source) }}"> {{ quest_monster.quest.source }} </a>
-                        {{ quest_monster.quest.source_star }}
-                    </td>
-                    <td>
-                        <a href="{{ url_for('quest.quest_detail', quest_id=quest_monster.quest.id) }}">
-                            {{ quest_monster.quest.name }}</a>
-                    </td>
-                    <td>
-                        <a href="{{ url_for('field.field_detail', field_name=quest_monster.quest.field.name) }}">
-                            {{ quest_monster.quest.field.name }}
-                        </a>
-                    </td>
-                    <td>{{ quest_monster.quest.time_limit }}분</td>
-                </tr>
-                {% endfor %}
-                {% endif %}
-            </tbody>
-        </table>
-        </div>
+
 
     </div>
 </div>
@@ -181,8 +143,46 @@
                 </tbody>
             </table>
         </div>
-
     </div>
 </div>
+<h5>등장 퀘스트</h5>
+    <div class="table-responsive">
+        <table class="table table-bordered text-nowrap">
+            <thead class="thead-light ">
+                <tr>
+                    <th scope="col">수주</th>
+                    <th scope="col">퀘스트</th>
+                    <th scope="col">필드</th>
+                    <th scope="col">제한시간</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if not quest_monster_list %}
+                <tr>
+                    <td>준비중입니다</td>
+                </tr>
+                {% else %}
+                {% for quest_monster in quest_monster_list %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('quest.quest', quest_source=quest_monster.quest.source) }}"> {{ quest_monster.quest.source }} </a>
+                        {{ quest_monster.quest.source_star }}
+                    </td>
+                    <td>
+                        <a href="{{ url_for('quest.quest_detail', quest_id=quest_monster.quest.id) }}">
+                            {{ quest_monster.quest.name }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ url_for('field.field_detail', field_name=quest_monster.quest.field.name) }}">
+                            {{ quest_monster.quest.field.name }}
+                        </a>
+                    </td>
+                    <td>{{ quest_monster.quest.time_limit }}분</td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
 
 {% endblock %}
