@@ -7,6 +7,7 @@ bp = Blueprint('search', __name__, url_prefix='/검색')
 
 @bp.route('/', methods=['GET'])
 def search():
+    title = "검색 | 몬헌라이즈DB"
     keyword = request.values.get('keyword')
     if keyword is None:
         abort(404)
@@ -19,5 +20,6 @@ def search():
         field_list=field_list,
         material_list=material_list,
         monster_list=monster_list,
-        quest_list=quest_list
+        quest_list=quest_list,
+        title=title
     )
