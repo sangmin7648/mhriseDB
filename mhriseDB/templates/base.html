@@ -8,10 +8,20 @@
   {% else %}
   <title>몬헌라이즈DB</title>
   {% endif %}
+
   <!-- 부트스트랩 min css -->
   <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
   <!-- 커스텀 css -->
   <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-G9L25VQ3EM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-G9L25VQ3EM');
+  </script>
 </head>
 
 <body style="background-color:rgb(230, 230, 230)">
