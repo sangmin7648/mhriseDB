@@ -97,8 +97,9 @@ class MaterialsFromField(db.Model):
 
 
 class MaterialsFromQuest(db.Model):
-    quest_id = db.Column(db.Integer, db.ForeignKey('quests.id', ondelete='CASCADE'), primary_key=True)
-    material_name = db.Column(db.String(100), db.ForeignKey('materials.name', ondelete='CASCADE'), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    quest_id = db.Column(db.Integer, db.ForeignKey('quests.id', ondelete='CASCADE'))
+    material_name = db.Column(db.String(100), db.ForeignKey('materials.name', ondelete='CASCADE'))
     material_count = db.Column(db.Integer)
     drop_rate = db.Column(db.Integer)
 
