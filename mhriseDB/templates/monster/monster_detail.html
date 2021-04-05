@@ -50,6 +50,7 @@
                 <thead class="thead-light text-center">
                     <tr>
                         <th scope="col">부위</th>
+                        <th scope="col">상태</th>
                         <th scope="col">절단</th>
                         <th scope="col">타격</th>
                         <th scope="col">원격</th>
@@ -69,6 +70,7 @@
                     {% for hit_data in hit_data_list %}
                         <tr>
                             <td>{{ hit_data.part }}</td>
+                            <td>{{ hit_data.state }}</td>
                             <td>{{ hit_data.slash }}</td>
                             <td>{{ hit_data.impact }}</td>
                             <td>{{ hit_data.shot }}</td>

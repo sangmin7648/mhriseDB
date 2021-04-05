@@ -35,6 +35,7 @@ class HitData(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     monster_name = db.Column(db.String(50), db.ForeignKey('monsters.name', ondelete='CASCADE'))
     part = db.Column(db.String(50))
+    state = db.Column(db.Integer)
     slash = db.Column(db.Integer)
     impact = db.Column(db.Integer)
     shot = db.Column(db.Integer)
