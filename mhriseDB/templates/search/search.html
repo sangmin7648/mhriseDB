@@ -27,7 +27,7 @@
         <h4>몬스터</h4>
         <hr>
         {% for monster in monster_list %}
-        <a href="{{ url_for('monster.monster', monster_name=monster.name) }}">
+        <a href="{{ url_for('monster.monster_detail', monster_name=monster.name) }}">
             {{ monster.name }} - {{ monster.alias }}</a><br>
         {% endfor %}
     </div>
