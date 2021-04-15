@@ -17,6 +17,7 @@
         <h5> 획득경로 </h5>
         <hr>
         <div class="row">
+            {% if material.material_monster_list %}
             <div class="col">
                 <h5>몬스터</h5>
                 <div class="table-responsive">
@@ -51,6 +52,7 @@
                     </table>
                 </div>
             </div>
+            {% endif %}
             <div class="col">
                 <h5>필드</h5>
                 <div class="table-responsive">
@@ -85,6 +87,7 @@
                     </table>
                 </div>
             </div>
+            {% if material.material_quest_list %}
             <div class="col">
                 <h5>퀘스트</h5>
                 <div class="table-responsive">
@@ -119,6 +122,7 @@
                     </table>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 
